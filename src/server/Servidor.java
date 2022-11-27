@@ -27,7 +27,8 @@ public class Servidor {
 				DataOutputStream out = new DataOutputStream(sc.getOutputStream());
 
 				// Pido al cliente el nombre al cliente
-				out.writeUTF("Indica tu nombre");
+				out.writeUTF("Hola, bienvenido a Red De Emprendedores. \n"
+						+ "Por favor, indica tu nombre");
 				String nombreCliente = in.readUTF();
 
 				// Inicio el hilo

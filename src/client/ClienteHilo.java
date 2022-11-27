@@ -22,7 +22,7 @@ public class ClienteHilo extends Thread {
 
 		Scanner sn = new Scanner(System.in);
 
-		int opcion = 0;
+		String opcion = "";
 		boolean salir = false;
 
 		while (!salir) {
@@ -32,8 +32,8 @@ public class ClienteHilo extends Thread {
 			try {
 				entradaServidor = in.readUTF();
 				System.out.println(entradaServidor);
-				opcion = sn.nextInt();
-				out.writeInt(opcion);
+				opcion = sn.nextLine();
+				out.writeUTF(opcion);
 				
 			} catch (IOException e) {
 				// TODO Auto-generated catch block

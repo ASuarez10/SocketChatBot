@@ -65,15 +65,87 @@ public class ServidorHilo extends Thread {
 
 								// Cubanitos
 								case 1:
-									pararCategorias = true;
-									pararComida = true;
-									// out.writeUTF("*Hacer pedido*");
+									boolean pararCubanitos = false;
+
+									while (!pararCubanitos) {
+										out.writeUTF(
+												"Productos/servicios disponibles: \n" + "1. Cubanito normal -- $3500 \n"
+														+ "2. Cubanitos especial -- $4500 \n" + "0. Volver");
+
+										int opcionCubanitos = in.readInt();
+
+										switch (opcionCubanitos) {
+
+										// Cubanito normal
+										case 1:
+											boolean pararCN = false;
+
+											while (!pararCN) {
+												out.writeUTF(
+														"Descripción: colita cubana con jamon, queso y salsa de ajo.\n"
+																+ "1. Ordenar.\n" + "0. Volver.");
+
+												int opcionCN = in.readInt();
+
+												switch (opcionCN) {
+
+												// Ordenar
+												case 1:
+													boolean pararOrdenarCN = false;
+
+													while (!pararOrdenarCN) {
+														out.writeUTF(
+																"¿Que cantidad deseas ordenar? En caso de ser un servicio digita 0.\n"
+																		+ "Para volver digita 100");
+
+														int cantidadCN = in.readInt();
+
+														if (cantidadCN != 100) {
+															out.writeUTF(
+																	"Escribe la direccion a donde quieres que vaya el emprendedor.");
+															String direccion = in.readUTF();
+															out.writeUTF(
+																	"Listo!. Se le envio el pedido al emprendedor, pronto te llegara un mensaje indicando si el emprendedor acepto o no el pedido.");
+															// TODO Hay que hacer que termine, pues este queda esperando
+															// una respuesta
+
+														}
+														pararOrdenarCN = true;
+													}
+
+													break;
+
+												// Volver
+												case 0:
+													pararCN = true;
+													break;
+												}
+											}
+											break;
+
+										// Cubanito especial
+										case 2:
+											boolean pararCE = false;
+
+											while (!pararCE) {
+												out.writeUTF(
+														"Descripción: colita cubana con doble jamon, doble queso y salsa de ajo.\n"
+																+ "1. Ordenar.\n" + "0. Volver.");
+											}
+											break;
+
+										// Volver
+										case 0:
+											pararCubanitos = true;
+											break;
+										}
+									}
+
+//									
 									break;
 								// Ñam
 								case 2:
-									pararCategorias = true;
-									pararComida = true;
-									// out.writeUTF("*Hacer pedido*");
+
 									break;
 								// Volver
 								case 0:
@@ -125,31 +197,29 @@ public class ServidorHilo extends Thread {
 				// Eres emprendedor
 				case 2:
 					boolean pararEmprendedor = false;
-					
-					while(!pararEmprendedor) {
-						
-						out.writeUTF("Elige una de las siguientes: \n"
-								+	 "1. Iniciar sesion. \n"
-								+	 "2. Registrarse \n"
-								+	 "0. Volver.");
-						
+
+					while (!pararEmprendedor) {
+
+						out.writeUTF("Elige una de las siguientes: \n" + "1. Iniciar sesion. \n" + "2. Registrarse \n"
+								+ "0. Volver.");
+
 						int opcionEmprendedor = in.readInt();
-						
-						switch(opcionEmprendedor) {
-						
-						//Iniciar sesion
-						case 1: 
+
+						switch (opcionEmprendedor) {
+
+						// Iniciar sesion
+						case 1:
 							out.writeUTF("Digita tu correo registrado");
 							String email = in.readUTF();
 							correoCliente = email;
 							out.writeUTF("Digita tu contraseña");
 							String password = in.readUTF();
-							
+
 							pararEmprendedor = true;
-							
+
 							break;
-							
-						//Registrarse
+
+						// Registrarse
 						case 2:
 							out.writeUTF("Digita tu correo para registrar");
 							String emailRegistro = in.readUTF();
@@ -158,20 +228,20 @@ public class ServidorHilo extends Thread {
 							String passwordRegistro = in.readUTF();
 							out.writeUTF("Confirma tu contraseña");
 							String passwordRegistroC = in.readUTF();
-							
+
 							pararEmprendedor = true;
-							
+
 							break;
 						}
-						
+
 					}
 					out.writeUTF("Elige una de las siguientes: \n" + "1. Iniciar sesion. \n" + "2. Registrarse \n"
 							+ "0. Volver.");
-					
+
 					int opcionEmprendedor = in.readInt();
-					
-					switch(opcionEmprendedor) {
-					
+
+					switch (opcionEmprendedor) {
+
 					}
 					break;
 
