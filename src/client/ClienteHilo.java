@@ -31,9 +31,15 @@ public class ClienteHilo extends Thread {
 			
 			try {
 				entradaServidor = in.readUTF();
+				
 				System.out.println(entradaServidor);
-				opcion = sn.nextLine();
-				out.writeUTF(opcion);
+				
+				if(entradaServidor.contains("Listo!") || entradaServidor.contains("Error!")) {
+					out.writeUTF("FIN");
+				}else {		
+					opcion = sn.nextLine();
+					out.writeUTF(opcion);
+				}
 				
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
